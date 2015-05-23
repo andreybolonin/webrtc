@@ -1,22 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <style type="text/css">
-    html { height: 100%; }
-    body { height: 100%; margin: 0; background: #111; text-align: center; }
-    #remoteVideo { height: 70%; margin-top: 5%; background: #000; }
-    #localVideo { width: 20%; position: absolute; right: 1.1em; bottom: 1em; border: 1px solid #333; background: #000; }
-    #callButton { position: absolute; display: none; left: 50%; font-size: 2em; bottom: 5%; border-radius: 1em; }
-  </style>
-</head>
-<script src="/socket.io/socket.io.js"></script>
-
-<video id="localVideo" autoplay muted></video>
-<video id="remoteVideo" autoplay></video>
-<button id="callButton" onclick="createOffer()">✆</button>
-
-<script>
 var PeerConnection = window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
 var IceCandidate = window.mozRTCIceCandidate || window.RTCIceCandidate;
 var SessionDescription = window.mozRTCSessionDescription || window.RTCSessionDescription;
@@ -82,30 +63,3 @@ function gotIceCandidate(event){
 function gotRemoteStream(event){
   document.getElementById("remoteVideo").src = URL.createObjectURL(event.stream);
 }
-
-
-////////////////////////////////////////////////
-// Socket.io
-
-var socket = io.connect('', {port: 1234});
-
-function sendMessage(message){
-  socket.emit('message', message);
-}
-
-socket.on('message', function (message){
-  if (message.type === 'offer') {
-    pc.setRemoteDescription(new SessionDescription(message));
-    createAnswer();
-  } 
-  else if (message.type === 'answer') {
-    pc.setRemoteDescription(new SessionDescription(message));
-  } 
-  else if (message.type === 'candidate') {
-    var candidate = new IceCandidate({sdpMLineIndex: message.label, candidate: message.candidate});
-    pc.addIceCandidate(candidate);
-  }
-});
-
-</script>
-</html>

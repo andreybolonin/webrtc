@@ -1,9 +1,13 @@
 var static = require('node-static');
 var http = require('http');
-var file = new(static.Server)();
+var file = new static.Server('./public');
+var port = 3000;
+
 var app = http.createServer(function (req, res) {
 	file.serve(req, res);
-}).listen(1234);
+}).listen(port);
+
+console.log('Server running at http://127.0.0.1:' + port);
 
 var io = require('socket.io').listen(app);
 

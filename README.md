@@ -1,10 +1,10 @@
-POST /api/login
-POST /api/registration
-POST /api/call/start { call_meta, speciality/symptoms/doctor }
-POST /api/call/close
-GET /api/doctors
-GET /api/specialities
-GET /api/symptoms
+* POST /api/login
+* POST /api/registration
+* POST /api/call/start { call_meta, speciality/symptoms/doctor }
+* POST /api/call/close
+* GET /api/doctors
+* GET /api/specialities
+* GET /api/symptoms
 or POST /api/symptoms (autocomplete)
 
 

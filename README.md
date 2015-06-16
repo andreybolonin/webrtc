@@ -42,6 +42,8 @@ or POST /api/symptoms (autocomplete)
 * doctor_id
 * patient_id
 * datetime
+* isFree
+* sum (hrn)
 
 ## Messages(chat logs) ## 
 * call_id

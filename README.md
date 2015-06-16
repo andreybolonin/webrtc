@@ -1,8 +1,9 @@
 * POST /api/login
+* POST /api/logout
 * POST /api/registration
 * POST /api/call/start { call_meta, speciality/symptoms/doctor }
 * POST /api/call/close
-* GET /api/doctors
+* GET /api/doctors/?:speciality ( by speciality)
 * GET /api/specialities
 * GET /api/symptoms
 or POST /api/symptoms (autocomplete)
@@ -21,7 +22,9 @@ or POST /api/symptoms (autocomplete)
 ## Doctors ##
 * user_id
 * speciality_id
-* career_start_date
+* expirience / career_start_date 
+* description
+* rate (hrn)
 
 ## Patients ##
 * user_id

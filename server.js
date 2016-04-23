@@ -7,7 +7,7 @@ var app = http.createServer(function (req, res) {
 	file.serve(req, res);
 }).listen(port);
 
-console.log('Server running at http://127.0.0.1:' + port);
+console.log('Server running at http://im.healthmarketing.me:' + port);
 
 var io = require('socket.io').listen(app);
 
@@ -34,13 +34,13 @@ io.sockets.on('connection', function (socket) {
 		if(numClients == 0) {
 			socket.join(room);
 			socket.emit('created', room);
-		} 
+		}
 
 		else if(numClients == 1) {
 			io.sockets.in(room).emit('join', room);
 			socket.join(room);
 			socket.emit('joined', room);
-		} 
+		}
 
 		else { // max two clients
 			socket.emit('full', room);
